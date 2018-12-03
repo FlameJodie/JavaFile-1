@@ -1,0 +1,71 @@
+package javaapplication2;
+import java.util.*;
+import java.io.*;
+
+public class JavaApplication2 {
+
+    
+    public static void main(String[] args) throws IOException{
+     Scanner in = new Scanner (System.in);
+      File file = new File ("in.txt");
+      File file1 = new File ("out.txt");
+Scanner in1 = new Scanner(file);
+PrintWriter out = new PrintWriter(file);
+PrintWriter out1 = new PrintWriter(file1);
+
+
+int n=0;int i, count =0; int sum=0, min=Integer.MAX_VALUE; double a=0;
+
+while (n!=4){
+    n=in.nextInt();
+
+switch(n){
+    
+    case 1:{
+
+if (!file.exists()) { 
+    System.out.print("Такого файла не существует");}
+else {
+    while(in.hasNextInt()) {
+        i = in.nextInt();
+out.print (i+" ");
+  }out.close();}
+break;
+    }
+      case 2:{
+          if (!file.exists()) { 
+    System.out.print("Такого файла не существует");}
+          else {
+while ((in1.hasNextInt())){
+i=in1.nextInt();
+    System.out.println(i);}
+    
+}break;}
+
+case 3: {
+    if (!file.exists()) { 
+    System.out.print("Такого файла не существует");}
+    else {
+while (in1.hasNextInt()){
+    i=in1.nextInt();
+    sum+=i;
+count++;
+if (i<min) min = i;}
+}
+if (!file1.exists()) { 
+    System.out.print("Такого файла не существует");}
+System.out.printf("количество числе в файле: %d%n", count); out1.printf("количество числе в файле: %d%n", count);
+System.out.printf("сумма чисел в файле: %d%n", sum);out1.printf("сумма чисел в файле: %d%n", sum);
+System.out.printf("минимальное число в файле: %d%n", min); out1.printf("минимальное число в файле: %d%n", min);  
+out1.close();
+break;
+}
+case 4: break;
+     
+
+
+}}
+
+
+    }
+}
