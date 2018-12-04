@@ -1,0 +1,79 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.util.Formatter;
+import java.util.Scanner;
+
+public class domic {
+
+    public static void main(String[] args) throws FileNotFoundException {
+        int noth = 0;
+        Scanner in = new Scanner(System.in);
+        File file = new File("in.txt");
+        File fileOut = new File("out.txt");
+
+        if(!file.exists()) {
+            System.out.print("файл in.txt cоздан\n");
+            PrintStream name = new PrintStream(file);
+            name.close();
+        }
+
+
+
+        //PrintWriter out = new PrintWriter(new File("in.txt"));
+
+        System.out.println("Введите команду (1 - ввод данных, 2 - просмотр данных, 3 - обрабока данных, 4 - программа завершает работу): ");
+        int mycase = 0;
+
+        while (mycase != 4) {
+
+            mycase = in.nextInt();
+            Scanner inFile = new Scanner(file);
+
+            if (mycase == 1) {
+                PrintStream outIn = new PrintStream(file);
+                while (in.hasNextInt()) {
+                    outIn.print(in.nextInt() + " ");
+                }
+                String nothing = in.next();
+                outIn.close();
+            }
+
+            if (mycase == 2) {
+
+                while (inFile.hasNextInt()) {
+                    System.out.print(inFile.nextInt() + " ");
+                }
+                file = file;
+
+            }
+
+            if (mycase == 3) {
+
+                PrintStream outOut = new PrintStream(fileOut);
+                int sum = 0;
+                int amount = 0;
+                int amount3 = 0;
+
+
+                while (inFile.hasNextInt()) {
+                    int number = inFile.nextInt();
+                    amount++;
+                    sum += number;
+                    if (number / 100 > 0 && number / 100 < 10) amount3++;
+                }
+
+                Formatter fmt = new Formatter();
+                fmt.format("кол-во = %d\nсумма = %d\nкол-во трехзначных = %d\nпроцент = %d\n", amount, sum, amount3, (int)((double)amount3/amount * 100));
+                System.out.print(fmt.toString());
+                outOut.print(fmt.toString());
+                fmt.close();
+                outOut.close();
+            }
+           inFile.close();
+
+        }
+
+    }
+}
